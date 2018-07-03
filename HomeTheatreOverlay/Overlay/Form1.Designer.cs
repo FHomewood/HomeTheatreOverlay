@@ -1,6 +1,6 @@
 ﻿namespace Overlay
 {
-    partial class Form1
+    partial class Overlay
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,29 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.Tick = new System.Windows.Forms.Timer(this.components);
+            this.SuspendLayout();
+            // 
+            // Tick
+            // 
+            this.Tick.Interval = 50;
+            this.Tick.Tick += new System.EventHandler(this.Update);
+            // 
+            // Overlay
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "Overlay";
+            this.TopMost = true;
+            this.Load += new System.EventHandler(this.Initialize);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer Tick;
     }
 }
 
