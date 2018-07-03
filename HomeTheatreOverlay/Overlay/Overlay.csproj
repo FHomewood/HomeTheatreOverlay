@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{662A9856-702B-4DAA-8368-D48F3F44E5E0}</ProjectGuid>
+    <ProjectGuid>{ECC8F8A1-DB35-45BB-85D9-A2F62C9A3A70}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Overlay</RootNamespace>
     <AssemblyName>Overlay</AssemblyName>
@@ -42,16 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Overlay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Overlay.Designer.cs">
+      <DependentUpon>Overlay.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Overlay.resx">
+      <DependentUpon>Overlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

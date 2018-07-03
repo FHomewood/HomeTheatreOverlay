@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overlay", "Overlay\Overlay.csproj", "{662A9856-702B-4DAA-8368-D48F3F44E5E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overlay", "Overlay\Overlay.csproj", "{ECC8F8A1-DB35-45BB-85D9-A2F62C9A3A70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{662A9856-702B-4DAA-8368-D48F3F44E5E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{662A9856-702B-4DAA-8368-D48F3F44E5E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{662A9856-702B-4DAA-8368-D48F3F44E5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{662A9856-702B-4DAA-8368-D48F3F44E5E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC8F8A1-DB35-45BB-85D9-A2F62C9A3A70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC8F8A1-DB35-45BB-85D9-A2F62C9A3A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC8F8A1-DB35-45BB-85D9-A2F62C9A3A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC8F8A1-DB35-45BB-85D9-A2F62C9A3A70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

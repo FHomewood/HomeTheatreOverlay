@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Tick = new System.Windows.Forms.Timer(this.components);
+            this._timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // Tick
+            // _timer
             // 
-            this.Tick.Interval = 50;
-            this.Tick.Tick += new System.EventHandler(this.Update);
+            this._timer.Enabled = true;
+            this._timer.Interval = 17;
+            this._timer.Tick += new System.EventHandler(this.Update);
             // 
             // Overlay
             // 
@@ -45,13 +46,14 @@
             this.Name = "Overlay";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Initialize);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Input);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Timer Tick;
+        private System.Windows.Forms.Timer _timer;
     }
 }
 
