@@ -65,7 +65,11 @@ namespace Overlay
                 for (int i = 0; i < Charms.Length; i++)
                 {
                     Charms[i]._panel.Location = new Point(250 * i, (int)((Charms[i]._panel.Location.Y - this.Height / 2f + Charms[i]._panel.Height / 2f) / 1.07f + this.Height / 2f - Charms[i]._panel.Height/2f));
-
+                }
+            if (!selected)
+                for (int i = 0; i < Charms.Length; i++)
+                {
+                    Charms[i]._panel.Location = new Point(250 * i, (int)((Charms[i]._panel.Location.Y + 2*Charms[i]._panel.Height + (Charms[i]._panel.Location.X - this.Width)) / 1.07f - 2*Charms[i]._panel.Height -(Charms[i]._panel.Location.X - this.Width)));
                 }
         }
 
