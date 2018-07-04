@@ -13,6 +13,7 @@ namespace Overlay
         public string _icon,
                _background,
                _shortcut;
+        public float x, y, opacity=255;
 
 
         public Charm(string _icon, string _background, string _shortcut)

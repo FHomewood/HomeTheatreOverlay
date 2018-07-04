@@ -65,21 +65,30 @@ namespace Overlay
                 for (int i = 0; i < Charms.Length; i++)
                 {
                     //Charms[i]._panel.Location = new Point(250 * i, (int)((Charms[i]._panel.Location.Y - this.Height / 2f + Charms[i]._panel.Height / 2f) / 1.07f + this.Height / 2f - Charms[i]._panel.Height/2f));
-                    Charms[i]._panel.Location = new Point(250 * i, (int)((Charms[i]._panel.Location.Y -
-                        (this.Height/2f - Charms[i]._panel.Height/2f)
+                    
+                    Charms[i].x = 250 * i;
+                    Charms[i].y = (Charms[i].y -
+                        (this.Height / 2f - Charms[i]._panel.Height / 2f)
                         ) / 1.07f +
                         (this.Height / 2f - Charms[i]._panel.Height / 2f)
-                        ));
+                        ;
                 }
             if (!selected)
                 for (int i = 0; i < Charms.Length; i++)
                 {
-                    Charms[i]._panel.Location = new Point(250 * i, (int)((Charms[i]._panel.Location.Y -
-                        ((Charms[i]._panel.Location.X - this.Width / 2 + Charms[i]._panel.Size.Width / 2f) *3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
-                        ) /1.02f +
-                        ((Charms[i]._panel.Location.X - this.Width / 2 + Charms[i]._panel.Size.Width / 2f) *3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
-                        ));
+                    Charms[i].x = 250 * i;
+                    Charms[i].y = (Charms[i].y -
+                        ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
+                        ) / 1.07f +
+                        ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
+                        ;
                 }
+
+            for (int i = 0; i < Charms.Length; i++)
+            {
+                Charms[i]._panel.Location = new Point((int)Charms[i].x, (int)Charms[i].y);
+                Charms[i]._panel.BackColor = Color.FromArgb((int)Charms[i].opacity, 0, 0, 0);
+            }
         }
 
         private void Input(object sender, KeyEventArgs e)
