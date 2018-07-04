@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using Overlay.Properties;
 
 namespace Overlay
 {
@@ -58,16 +59,14 @@ namespace Overlay
             {
                 this.Controls.Add(Charms[i]._title);
                 this.Controls.Add(Charms[i]._panel);
+                Charms[i].x = 550 * i + scrollVal;
+                Charms[i].y = ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f);
             }
-
-            ////Makes the overlay clickthrough
-            //int initialStyle = GetWindowLong(this.Handle, -20);
-            //SetWindowLong(this.Handle, -20, initialStyle | 0x80000 | 0x20);
         }
 
         private void Update(object sender, EventArgs e)
         {
-            //if (this.Focused == false) selected = false;
+            if (this.Focused == false) selected = false;
             for (int i = 0; i < Charms.Length; i++)
             {
                 if (selected)
@@ -93,19 +92,21 @@ namespace Overlay
                 Charms[i]._panel.Location = new Point((int)Charms[i].x, (int)Charms[i].y);
                 Charms[i]._title.Location = new Point(
                     (int)(Charms[i]._panel.Location.X + 150 - Charms[i]._title.Size.Width / 2f),
-                    (int)(Charms[i]._panel.Location.Y + 400 - Charms[i]._title.Size.Height / 2f));
+                    (int)(Charms[i]._panel.Location.Y + 425 - Charms[i]._title.Size.Height / 2f));
 
                 if (new Rectangle(Charms[i]._panel.Location.X,
                                     Charms[i]._panel.Location.Y,
                                     Charms[i]._panel.Size.Width,
                                     Charms[i]._panel.Size.Height).Contains(MousePosition))
                 {
-                    Charms[i]._panel.BackColor = Color.FromArgb(60, 60, 60);
+                    //on Hover
+                    Charms[i]._panel.BackgroundImage = Resources.CircularShiniB_V3_222;
                     Charms[i]._title.BackColor = Color.FromArgb(60, 60, 60);
-
                 }
                 else
                 {
+                    //no Hover
+                    Charms[i]._panel.BackgroundImage = null;
                     Charms[i]._panel.BackColor = Color.FromArgb(40, 40, 40);
                     Charms[i]._title.BackColor = Color.FromArgb(40, 40, 40);
                 }
