@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Charm.cs" />
     <Compile Include="Overlay.cs">
       <SubType>Form</SubType>
     </Compile>

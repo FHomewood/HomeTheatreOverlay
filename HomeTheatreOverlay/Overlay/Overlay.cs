@@ -20,13 +20,22 @@ namespace Overlay
 
         bool selected = true;
         int ticks = 0;
-        Panel Jim = new Panel();
-        Panel[] Shortcuts = new Panel[]
+        Charm[] Charms = new Charm[]
         {
-                new Panel(),
-                new Panel(),
-                new Panel(),
-                new Panel()
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","",""),
+                new Charm("","","")
         };
         public Overlay()
         {
@@ -46,26 +55,16 @@ namespace Overlay
             //int initialStyle = GetWindowLong(this.Handle, -20);
             //SetWindowLong(this.Handle, -20, initialStyle | 0x80000 | 0x20);
 
-            for(int i = 0; i < Shortcuts.Length; i++)
-            {
-                this.Controls.Add(Shortcuts[i]);
-                Shortcuts[i].Size = new Size(100, 100);
-                Shortcuts[i].BackColor = Color.Black;
-            }
-
-
-            Jim.Location = new Point(300, 300);
-            Jim.Size = new Size(100, 100);
-            Jim.BackColor = Color.Black;
+            for(int i = 0; i < Charms.Length; i++) this.Controls.Add(Charms[i]._panel);
         }
 
         private void Update(object sender, EventArgs e)
         {
             ticks++;
             if (selected)
-                for (int i = 0; i < Shortcuts.Length; i++)
+                for (int i = 0; i < Charms.Length; i++)
                 {
-                    Shortcuts[i].Location = new Point(200 * i,(int) ((Shortcuts[i].Location.Y - this.Height / 2f) / 1.02f + this.Height / 2f));
+                    Charms[i]._panel.Location = new Point(250 * i, (int)((Charms[i]._panel.Location.Y - this.Height / 2f + Charms[i]._panel.Height / 2f) / 1.07f + this.Height / 2f - Charms[i]._panel.Height/2f));
 
                 }
         }
