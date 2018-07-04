@@ -20,7 +20,7 @@ namespace Overlay
         {
             _panel = new Panel();
             _panel.BackColor = Color.Black;
-            _panel.Size = new Size(200, 300);
+            _panel.Size = new Size(400, 600);
         }
     }
 }
