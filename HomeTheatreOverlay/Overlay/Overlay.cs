@@ -18,6 +18,7 @@ namespace Overlay
         [DllImport("user32.dll", SetLastError = true)]
         static extern int GetWindowLong(IntPtr hWnd, int nInde);
 
+        bool selected = true;
         int ticks = 0;
         Panel Jim = new Panel();
         Panel[] Shortcuts = new Panel[]
@@ -61,15 +62,17 @@ namespace Overlay
         private void Update(object sender, EventArgs e)
         {
             ticks++;
-            for(int i = 0; i < Shortcuts.Length; i++)
-            {
-                Shortcuts[i].Location = new Point(150 * i, ticks);
-            }
+            if (selected)
+                for (int i = 0; i < Shortcuts.Length; i++)
+                {
+                    Shortcuts[i].Location = new Point(200 * i,(int) ((Shortcuts[i].Location.Y - this.Height / 2f) / 1.02f + this.Height / 2f));
+
+                }
         }
 
         private void Input(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Enter) { this.BackColor = Color.Green; }
+            if (e.KeyData == Keys.Enter) selected = !selected;
         }
     }
 }

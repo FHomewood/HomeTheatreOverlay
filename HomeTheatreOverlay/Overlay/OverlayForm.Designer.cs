@@ -35,7 +35,7 @@
             // _timer
             // 
             this._timer.Enabled = true;
-            this._timer.Interval = 10;
+            this._timer.Interval = 17;
             this._timer.Tick += new System.EventHandler(this.Update);
             // 
             // Overlay
