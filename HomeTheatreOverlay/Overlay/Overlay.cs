@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -19,23 +20,23 @@ namespace Overlay
         static extern int GetWindowLong(IntPtr hWnd, int nInde);
 
         bool selected = false;
-        int ticks = 0;
+        int scrollVal = 0;
         Charm[] Charms = new Charm[]
         {
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","",""),
-                new Charm("","","")
+                new Charm("Hello","","",""),
+                new Charm("World","","",""),
+                new Charm("","","",""),
+                new Charm("","","",""),
+                new Charm("","","",""),
+                new Charm("","","",""),
+                new Charm("","","",""),
+                new Charm("","","",""),
+                new Charm("","","",""),
+                new Charm("","","",""),
+                new Charm("","","",""),
+                new Charm("","","",""),
+                new Charm("","","",""),
+                new Charm("","","","")
         };
         public Overlay()
         {
@@ -44,58 +45,66 @@ namespace Overlay
 
         private void Initialize(object sender, EventArgs e)
         {
-            this.BackColor = Color.Wheat;
-            this.TransparencyKey = Color.Wheat;
+            this.Opacity = 0.9f;
+            this.BackColor = Color.FromArgb(255,1, 1, 1);
+            this.TransparencyKey = Color.FromArgb(255, 1, 1, 1);
 
             this.TopMost = true;
             this.Location = new Point(0, 0);
             this.Size = new Size(1920,1080);
 
-            //Makes the overlay clickthrough
-            int initialStyle = GetWindowLong(this.Handle, -20);
-            SetWindowLong(this.Handle, -20, initialStyle | 0x80000 | 0x20);
 
-            for(int i = 0; i < Charms.Length; i++) this.Controls.Add(Charms[i]._panel);
+            for (int i = 0; i < Charms.Length; i++)
+            {
+                this.Controls.Add(Charms[i]._panel);
+                //this.Controls.Add(Charms[i]._title);
+            }
+
+            ////Makes the overlay clickthrough
+            //int initialStyle = GetWindowLong(this.Handle, -20);
+            //SetWindowLong(this.Handle, -20, initialStyle | 0x80000 | 0x20);
         }
 
         private void Update(object sender, EventArgs e)
         {
-            ticks++;
-            if (selected)
-                for (int i = 0; i < Charms.Length; i++)
-                {
-                    Charms[i].x = 550 * i;
-                    Charms[i].y = (Charms[i].y -
-                        (this.Height / 2f - Charms[i]._panel.Height / 2f)
-                        ) / 1.07f +
-                        (this.Height / 2f - Charms[i]._panel.Height / 2f)
-                        ;
-                    //opacity breaks it since it tries to show the Color.Wheat background
-                    //if (Charms[i].opacity <255) Charms[i].opacity++;
-                }
-            if (!selected)
-                for (int i = 0; i < Charms.Length; i++)
-                {
-                    Charms[i].x = 550 * i;
-                    Charms[i].y = (Charms[i].y -
-                        ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
-                        ) / 1.07f +
-                        ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
-                        ;
-                    //opacity breaks it since it tries to show the Color.Wheat background
-                    //if (Charms[i].opacity > 0) Charms[i].opacity--;
-                }
-
+            if (this.Focused == false) selected = false;
             for (int i = 0; i < Charms.Length; i++)
             {
-                Charms[i]._panel.Location = new Point((int)Charms[i].x, (int)Charms[i].y);
-                Charms[i]._panel.BackColor = Color.FromArgb((int)Charms[i].opacity, 0, 0, 0);
-            }
-        }
-        
+                if (selected)
+                {
+                    Charms[i].x = 550 * i + scrollVal;
+                    Charms[i].y = (Charms[i].y -
+                        (this.Height / 2f - Charms[i]._panel.Height / 2f)
+                        ) / 1.07f +
+                        (this.Height / 2f - Charms[i]._panel.Height / 2f)
+                        ;
+                }
 
-        private void MouseInput(object sender, MouseEventArgs e)
-        {
+                if (!selected)
+                {
+                    Charms[i].x = 550 * i + scrollVal;
+                    Charms[i].y = (Charms[i].y -
+                        ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
+                        ) / 1.07f +
+                        ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
+                        ;
+                }
+
+                Charms[i]._panel.Location = new Point((int)Charms[i].x, (int)Charms[i].y);
+                Charms[i]._title.Location = new Point(
+                    (int)(Charms[i]._panel.Location.X + 150 - Charms[i]._title.Size.Width / 2f),
+                    (int)(Charms[i]._panel.Location.Y + 300 - Charms[i]._title.Size.Height / 2f));
+
+                if (new Rectangle(Charms[i]._panel.Location.X,
+                                    Charms[i]._panel.Location.Y,
+                                    Charms[i]._panel.Size.Width,
+                                    Charms[i]._panel.Size.Height).Contains(MousePosition))
+                {
+                    Charms[i]._panel.BackColor = Color.FromArgb(60,60,60);
+                }
+                else
+                    Charms[i]._panel.BackColor = Color.FromArgb(40,40,40);
+            }
         }
 
         private void KeyInput(object sender, KeyEventArgs e)

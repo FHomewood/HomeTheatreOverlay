@@ -10,17 +10,21 @@ namespace Overlay
     class Charm
     {
         public Panel _panel;
-        public string _icon,
-               _background,
-               _shortcut;
-        public float x, y, opacity=255;
+        public Label _title;
+        public string
+                _icon,
+                _background,
+                _shortcut;
+        public float x, y;
 
 
-        public Charm(string _icon, string _background, string _shortcut)
+        public Charm(string _title, string _icon, string _background, string _shortcut)
         {
-            _panel = new Panel();
-            _panel.BackColor = Color.Black;
-            _panel.Size = new Size(400, 600);
+            this._panel = new Panel();
+            this._panel.BackColor = Color.FromArgb(255,255,255);
+            this._panel.Size = new Size(300, 450);
+            this._title = new Label();
+            this._title.Text = _title;
         }
     }
 }
