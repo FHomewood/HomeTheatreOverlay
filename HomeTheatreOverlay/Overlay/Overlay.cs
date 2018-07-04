@@ -19,24 +19,24 @@ namespace Overlay
         [DllImport("user32.dll", SetLastError = true)]
         static extern int GetWindowLong(IntPtr hWnd, int nInde);
 
-        bool selected = false;
+        bool selected = true;
         int scrollVal = 0;
         Charm[] Charms = new Charm[]
         {
-                new Charm("Hello","","",""),
-                new Charm("World","","",""),
-                new Charm("","","",""),
-                new Charm("","","",""),
-                new Charm("","","",""),
-                new Charm("","","",""),
-                new Charm("","","",""),
-                new Charm("","","",""),
-                new Charm("","","",""),
-                new Charm("","","",""),
-                new Charm("","","",""),
-                new Charm("","","",""),
-                new Charm("","","",""),
-                new Charm("","","","")
+                new Charm("One","","",""),
+                new Charm("Two","","",""),
+                new Charm("Three","","",""),
+                new Charm("Four","","",""),
+                new Charm("Five","","",""),
+                new Charm("Six","","",""),
+                new Charm("Seven","","",""),
+                new Charm("Eight","","",""),
+                new Charm("Nine","","",""),
+                new Charm("Ten","","",""),
+                new Charm("Eleven","","",""),
+                new Charm("Twelve","","",""),
+                new Charm("Thirteen","","",""),
+                new Charm("Fourteen","","","")
         };
         public Overlay()
         {
@@ -56,8 +56,8 @@ namespace Overlay
 
             for (int i = 0; i < Charms.Length; i++)
             {
+                this.Controls.Add(Charms[i]._title);
                 this.Controls.Add(Charms[i]._panel);
-                //this.Controls.Add(Charms[i]._title);
             }
 
             ////Makes the overlay clickthrough
@@ -67,7 +67,7 @@ namespace Overlay
 
         private void Update(object sender, EventArgs e)
         {
-            if (this.Focused == false) selected = false;
+            //if (this.Focused == false) selected = false;
             for (int i = 0; i < Charms.Length; i++)
             {
                 if (selected)
@@ -93,17 +93,22 @@ namespace Overlay
                 Charms[i]._panel.Location = new Point((int)Charms[i].x, (int)Charms[i].y);
                 Charms[i]._title.Location = new Point(
                     (int)(Charms[i]._panel.Location.X + 150 - Charms[i]._title.Size.Width / 2f),
-                    (int)(Charms[i]._panel.Location.Y + 300 - Charms[i]._title.Size.Height / 2f));
+                    (int)(Charms[i]._panel.Location.Y + 400 - Charms[i]._title.Size.Height / 2f));
 
                 if (new Rectangle(Charms[i]._panel.Location.X,
                                     Charms[i]._panel.Location.Y,
                                     Charms[i]._panel.Size.Width,
                                     Charms[i]._panel.Size.Height).Contains(MousePosition))
                 {
-                    Charms[i]._panel.BackColor = Color.FromArgb(60,60,60);
+                    Charms[i]._panel.BackColor = Color.FromArgb(60, 60, 60);
+                    Charms[i]._title.BackColor = Color.FromArgb(60, 60, 60);
+
                 }
                 else
-                    Charms[i]._panel.BackColor = Color.FromArgb(40,40,40);
+                {
+                    Charms[i]._panel.BackColor = Color.FromArgb(40, 40, 40);
+                    Charms[i]._title.BackColor = Color.FromArgb(40, 40, 40);
+                }
             }
         }
 
