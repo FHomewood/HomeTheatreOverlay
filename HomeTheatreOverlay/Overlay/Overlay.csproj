@@ -82,5 +82,11 @@
   <ItemGroup>
     <None Include="Resources\CircularShiniB V3.222.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chrome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Template.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

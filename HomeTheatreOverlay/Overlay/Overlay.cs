@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 using Overlay.Properties;
 
 namespace Overlay
@@ -21,23 +22,23 @@ namespace Overlay
         static extern int GetWindowLong(IntPtr hWnd, int nInde);
 
         bool selected = true;
-        int scrollVal = 0;
+        float scrollVal = -2;
+        float scroller = -2;
         Charm[] Charms = new Charm[]
         {
-                new Charm("One","","",""),
-                new Charm("Two","","",""),
-                new Charm("Three","","",""),
-                new Charm("Four","","",""),
-                new Charm("Five","","",""),
-                new Charm("Six","","",""),
-                new Charm("Seven","","",""),
-                new Charm("Eight","","",""),
-                new Charm("Nine","","",""),
-                new Charm("Ten","","",""),
-                new Charm("Eleven","","",""),
-                new Charm("Twelve","","",""),
-                new Charm("Thirteen","","",""),
-                new Charm("Fourteen","","","")
+            //  new Charm( Name , Launch File Path, Background Resource, Icon Resource )
+                new Charm("Chrome","",Resources.Template,Resources.Chrome),
+                new Charm("TWO","",Resources.Template,Resources.Template),
+                new Charm("THREE","",Resources.Template,Resources.Template),
+                new Charm("FOUR","",Resources.Template,Resources.Template),
+                new Charm("FIVE","",Resources.Template,Resources.Template),
+                new Charm("SIX","",Resources.Template,Resources.Template),
+                new Charm("SEVEN","",Resources.Template,Resources.Template),
+                new Charm("EIGHT","",Resources.Template,Resources.Template),
+                new Charm("NINE","",Resources.Template,Resources.Template),
+                new Charm("TEN","",Resources.Template,Resources.Template),
+                new Charm("ELEVEN","",Resources.Template,Resources.Template),
+                new Charm("TWELVE","",Resources.Template,Resources.Template)
         };
         public Overlay()
         {
@@ -67,11 +68,13 @@ namespace Overlay
         private void Update(object sender, EventArgs e)
         {
             if (this.Focused == false) selected = false;
+            scroller += (scrollVal - scroller) / 4f;
+
             for (int i = 0; i < Charms.Length; i++)
             {
                 if (selected)
                 {
-                    Charms[i].x = 550 * i + scrollVal;
+                    Charms[i].x = (float)Math.Sinh(i + scroller + 0.5)*300 + this.Width/2f - 150;
                     Charms[i].y = (Charms[i].y -
                         (this.Height / 2f - Charms[i]._panel.Height / 2f)
                         ) / 1.07f +
@@ -81,7 +84,7 @@ namespace Overlay
 
                 if (!selected)
                 {
-                    Charms[i].x = 550 * i + scrollVal;
+                    Charms[i].x = (float)Math.Sinh(i + scroller + 0.5) * 300 + this.Width / 2f - 150;
                     Charms[i].y = (Charms[i].y -
                         ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
                         ) / 1.07f +
@@ -100,15 +103,33 @@ namespace Overlay
                                     Charms[i]._panel.Size.Height).Contains(MousePosition))
                 {
                     //on Hover
-                    Charms[i]._panel.BackgroundImage = Resources.CircularShiniB_V3_222;
+                    Charms[i]._panel.BackgroundImage = Charms[i]._background;
                     Charms[i]._title.BackColor = Color.FromArgb(60, 60, 60);
+                    Charms[i]._panel.Click += _panel_Click;
                 }
                 else
                 {
                     //no Hover
-                    Charms[i]._panel.BackgroundImage = null;
-                    Charms[i]._panel.BackColor = Color.FromArgb(40, 40, 40);
+                    Charms[i]._panel.BackgroundImage = Charms[i]._icon;
                     Charms[i]._title.BackColor = Color.FromArgb(40, 40, 40);
+                }
+            }
+        }
+
+        private void _panel_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < Charms.Length; i++)
+            {
+                if (new Rectangle(Charms[i]._panel.Location.X,
+                                    Charms[i]._panel.Location.Y,
+                                    Charms[i]._panel.Size.Width,
+                                    Charms[i]._panel.Size.Height).Contains(MousePosition))
+                {
+                    try
+                    {
+                        Process.Start(Charms[i]._launch);
+                    }
+                    catch { }
                 }
             }
         }
@@ -117,6 +138,8 @@ namespace Overlay
         {
             if (e.KeyData == Keys.Enter) selected = !selected;
             if (e.KeyData == Keys.Escape) this.Close();
+            if (e.KeyData == Keys.Up) scrollVal++;
+            if (e.KeyData == Keys.Down) scrollVal--;
         }
     }
 }

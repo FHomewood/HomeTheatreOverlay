@@ -11,20 +11,28 @@ namespace Overlay
     {
         public Panel _panel;
         public Label _title;
+        public Image _background, _icon;
+        public string _launch;
         public float x, y;
 
 
-        public Charm(string _title, string _icon, string _background, string _shortcut)
+        public Charm(string _title, string _launch, Image _background, Image _icon)
         {
             this._panel = new Panel();
             this._panel.BackColor = Color.FromArgb(40, 40, 40);
+            this._panel.BackgroundImageLayout = ImageLayout.Stretch;
             this._panel.Size = new Size(300, 450);
+
             this._title = new Label();
             this._title.Text = _title;
             this._title.Size = new Size(300, 50);
             this._title.TextAlign = ContentAlignment.MiddleCenter;
             this._title.Font = new Font("Simplifica", 30, FontStyle.Regular);
             this._title.ForeColor = Color.White;
+
+            this._launch = _launch;
+            this._background = _background;
+            this._icon = _icon;
 
         }
     }

@@ -63,9 +63,19 @@ namespace Overlay.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CircularShiniB_V3_222 {
+        internal static System.Drawing.Bitmap Chrome {
             get {
-                object obj = ResourceManager.GetObject("CircularShiniB_V3_222", resourceCulture);
+                object obj = ResourceManager.GetObject("Chrome", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Template {
+            get {
+                object obj = ResourceManager.GetObject("Template", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
