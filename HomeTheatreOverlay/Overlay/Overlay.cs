@@ -22,17 +22,17 @@ namespace Overlay
         static extern int GetWindowLong(IntPtr hWnd, int nInde);
 
         bool selected = true;
-        float scrollVal = -2;
-        float scroller = -2;
-        float spread = 400;
+        float scrollVal = -3;
+        float scroller = -3;
         Charm[] Charms = new Charm[]
         {
             //  new Charm( Name , Launch File Path, Background Resource, Icon Resource )
-                new Charm("Chrome","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",Resources.Template,Resources.Chrome),
-                new Charm("TWO","",Resources.Template,Resources.Template),
-                new Charm("THREE","",Resources.Template,Resources.Template),
-                new Charm("FOUR","",Resources.Template,Resources.Template),
-                new Charm("FIVE","",Resources.Template,Resources.Template),
+                new Charm("START", "", Resources.Template,Resources.Template),
+                new Charm("CHROME","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",Resources.Chrome,Resources.Chrome),
+                new Charm("STEAM","",Resources.Steam,Resources.Steam),
+                new Charm("EXPLORER","",Resources.Folder,Resources.Folder),
+                new Charm("PAINT","",Resources.PaintDotNet,Resources.PaintDotNet),
+                new Charm("SETTINGS","",Resources.Setting,Resources.Setting),
                 new Charm("SIX","",Resources.Template,Resources.Template),
                 new Charm("SEVEN","",Resources.Template,Resources.Template),
                 new Charm("EIGHT","",Resources.Template,Resources.Template),
@@ -48,7 +48,7 @@ namespace Overlay
 
         private void Initialize(object sender, EventArgs e)
         {
-            this.Opacity = 0.0f;
+            this.Opacity = 0.1f;
             this.BackColor = Color.FromArgb(255,1, 1, 1);
             this.TransparencyKey = Color.FromArgb(255, 1, 1, 1);
 
@@ -69,6 +69,8 @@ namespace Overlay
         private void Update(object sender, EventArgs e)
         {
             if (selected) this.Opacity += (0.8f - this.Opacity) / 15f; else this.Opacity += (0.0f - this.Opacity) / 4f;
+            if (this.Opacity < 0.05f) this.Close();
+                
             if (this.Focused == false) selected = false;
             scroller += (scrollVal - scroller) / 4f;
 
@@ -131,7 +133,7 @@ namespace Overlay
                     try { Process.Start(Charms[i]._launch); }
                     catch { }
                     selected = false;
-                        i = Charms.Length;
+                    i = Charms.Length;
                     }
                     i++;
                 }
@@ -144,8 +146,6 @@ namespace Overlay
             if (e.KeyData == Keys.Escape) this.Close();
             if (e.KeyData == Keys.Up) scrollVal++;
             if (e.KeyData == Keys.Down) scrollVal--;
-            if (e.KeyData == Keys.Left) spread++;
-            if (e.KeyData == Keys.Right) spread--;
         }
 
         private void RunFine(object sender, MouseEventArgs e)

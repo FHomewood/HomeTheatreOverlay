@@ -80,13 +80,22 @@
     <Folder Include="Resources\Shortcuts\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CircularShiniB V3.222.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Chrome.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaintDotNet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Steam.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
