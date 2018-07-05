@@ -28,7 +28,7 @@ namespace Overlay
         Charm[] Charms = new Charm[]
         {
             //  new Charm( Name , Launch File Path, Background Resource, Icon Resource )
-                new Charm("Chrome","",Resources.Template,Resources.Chrome),
+                new Charm("Chrome","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",Resources.Template,Resources.Chrome),
                 new Charm("TWO","",Resources.Template,Resources.Template),
                 new Charm("THREE","",Resources.Template,Resources.Template),
                 new Charm("FOUR","",Resources.Template,Resources.Template),
@@ -107,7 +107,7 @@ namespace Overlay
                     //on Hover
                     Charms[i]._panel.BackgroundImage = Charms[i]._background;
                     Charms[i]._title.BackColor = Color.FromArgb(60, 60, 60);
-                    Charms[i]._panel.Click += _panel_Click;
+                    Charms[i]._panel.MouseUp += _panel_MouseUp;
                 }
                 else
                 {
@@ -118,23 +118,25 @@ namespace Overlay
             }
         }
 
-        private void _panel_Click(object sender, EventArgs e)
+        private void _panel_MouseUp(object sender, MouseEventArgs e)
         {
-            for (int i = 0; i < Charms.Length; i++)
-            {
-                if (new Rectangle(Charms[i]._panel.Location.X,
-                                    Charms[i]._panel.Location.Y,
-                                    Charms[i]._panel.Size.Width,
-                                    Charms[i]._panel.Size.Height).Contains(MousePosition))
+                int i = 0;
+                while (i < Charms.Length)
                 {
-                    try
+                    if (selected && new Rectangle(Charms[i]._panel.Location.X,
+                                        Charms[i]._panel.Location.Y,
+                                        Charms[i]._panel.Size.Width,
+                                        Charms[i]._panel.Size.Height).Contains(MousePosition))
                     {
-                        Process.Start(Charms[i]._launch);
-                    }
+                    try { Process.Start(Charms[i]._launch); }
                     catch { }
+                    selected = false;
+                        i = Charms.Length;
+                    }
+                    i++;
                 }
-            }
         }
+        
 
         private void KeyInput(object sender, KeyEventArgs e)
         {
@@ -144,6 +146,10 @@ namespace Overlay
             if (e.KeyData == Keys.Down) scrollVal--;
             if (e.KeyData == Keys.Left) spread++;
             if (e.KeyData == Keys.Right) spread--;
+        }
+
+        private void RunFine(object sender, MouseEventArgs e)
+        {
         }
     }
 }
