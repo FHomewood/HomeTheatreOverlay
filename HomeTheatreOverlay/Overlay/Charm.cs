@@ -21,11 +21,11 @@ namespace Overlay
             this._panel = new Panel();
             this._panel.BackColor = Color.FromArgb(40, 40, 40);
             this._panel.BackgroundImageLayout = ImageLayout.Stretch;
-            this._panel.Size = new Size(300, 450);
+            this._panel.Size = new Size(225, 337);
 
             this._title = new Label();
             this._title.Text = _title;
-            this._title.Size = new Size(300, 50);
+            this._title.Size = new Size(this._panel.Size.Width, 50);
             this._title.TextAlign = ContentAlignment.MiddleCenter;
             this._title.Font = new Font("Simplifica", 30, FontStyle.Regular);
             this._title.ForeColor = Color.White;

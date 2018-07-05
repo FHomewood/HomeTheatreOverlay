@@ -24,6 +24,7 @@ namespace Overlay
         bool selected = true;
         float scrollVal = -2;
         float scroller = -2;
+        float spread = 400;
         Charm[] Charms = new Charm[]
         {
             //  new Charm( Name , Launch File Path, Background Resource, Icon Resource )
@@ -75,7 +76,7 @@ namespace Overlay
             {
                 if (selected)
                 {
-                    Charms[i].x = (float)Math.Sinh(i + scroller + 0.5)*300 + this.Width/2f - 150;
+                    Charms[i].x = (float)Math.Sinh((i + scroller + 0.5)/3.5)*800 + this.Width/2f - Charms[i]._panel.Width/2;
                     Charms[i].y = (Charms[i].y -
                         (this.Height / 2f - Charms[i]._panel.Height / 2f)
                         ) / 1.07f +
@@ -95,8 +96,8 @@ namespace Overlay
 
                 Charms[i]._panel.Location = new Point((int)Charms[i].x, (int)Charms[i].y);
                 Charms[i]._title.Location = new Point(
-                    (int)(Charms[i]._panel.Location.X + 150 - Charms[i]._title.Size.Width / 2f),
-                    (int)(Charms[i]._panel.Location.Y + 425 - Charms[i]._title.Size.Height / 2f));
+                    (int)(Charms[i]._panel.Location.X + Charms[i]._panel.Size.Width/2 - Charms[i]._title.Size.Width / 2f),
+                    (int)(Charms[i]._panel.Location.Y + Charms[i]._panel.Size.Height - Charms[i]._title.Size.Height));
 
                 if (new Rectangle(Charms[i]._panel.Location.X,
                                     Charms[i]._panel.Location.Y,
@@ -141,6 +142,8 @@ namespace Overlay
             if (e.KeyData == Keys.Escape) this.Close();
             if (e.KeyData == Keys.Up) scrollVal++;
             if (e.KeyData == Keys.Down) scrollVal--;
+            if (e.KeyData == Keys.Left) spread++;
+            if (e.KeyData == Keys.Right) spread--;
         }
     }
 }
