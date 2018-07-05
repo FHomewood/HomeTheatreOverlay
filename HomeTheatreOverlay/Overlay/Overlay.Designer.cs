@@ -48,7 +48,6 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Initialize);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyInput);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.RunFine);
             this.ResumeLayout(false);
 
         }

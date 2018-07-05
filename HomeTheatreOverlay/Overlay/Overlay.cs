@@ -40,6 +40,7 @@ namespace Overlay
         public Overlay()
         {
             InitializeComponent();
+            this.MouseWheel += Overlay_MouseWheel;
         }
 
         private void Initialize(object sender, EventArgs e)
@@ -68,6 +69,9 @@ namespace Overlay
             if (this.Opacity < 0.05f) this.Close();
                 
             if (this.Focused == false) selected = false;
+            scrollVal += ((float)Math.Round(scrollVal,0) - scrollVal)/2f;
+            if (scrollVal > -3) scrollVal = -3;
+            if (scrollVal < 3-Charms.Length) scrollVal = 3-Charms.Length;
             scroller += (scrollVal - scroller) / 4f;
 
             for (int i = 0; i < Charms.Length; i++)
@@ -144,8 +148,9 @@ namespace Overlay
             if (e.KeyData == Keys.Down) scrollVal--;
         }
 
-        private void RunFine(object sender, MouseEventArgs e)
+        private void Overlay_MouseWheel(object sender, MouseEventArgs e)
         {
+            scrollVal += e.Delta/120f;
         }
     }
 }
