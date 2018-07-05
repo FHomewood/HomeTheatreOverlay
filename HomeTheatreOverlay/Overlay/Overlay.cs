@@ -47,7 +47,7 @@ namespace Overlay
 
         private void Initialize(object sender, EventArgs e)
         {
-            this.Opacity = 0.9f;
+            this.Opacity = 0.0f;
             this.BackColor = Color.FromArgb(255,1, 1, 1);
             this.TransparencyKey = Color.FromArgb(255, 1, 1, 1);
 
@@ -67,6 +67,7 @@ namespace Overlay
 
         private void Update(object sender, EventArgs e)
         {
+            if (selected) this.Opacity += (0.8f - this.Opacity) / 10f; else this.Opacity += (0.0f - this.Opacity) / 10f;
             if (this.Focused == false) selected = false;
             scroller += (scrollVal - scroller) / 4f;
 
