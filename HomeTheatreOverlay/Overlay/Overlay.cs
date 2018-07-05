@@ -27,19 +27,15 @@ namespace Overlay
         Charm[] Charms = new Charm[]
         {
             //  new Charm( Name , Launch File Path, Background Resource, Icon Resource )
-                new Charm("START", "", Resources.Template,Resources.Start),
-                new Charm("CHROME","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",Resources.Chrome,Resources.Chrome),
-                new Charm("STEAM","",Resources.Steam,Resources.Steam),
-                new Charm("EXPLORER","",Resources.Folder,Resources.Folder),
-                new Charm("PAINT","",Resources.PaintDotNet,Resources.PaintDotNet),
-                new Charm("SETTINGS","",Resources.Setting,Resources.Setting),
-                new Charm("SIX","",Resources.Template,Resources.Template),
-                new Charm("SEVEN","",Resources.Template,Resources.Template),
-                new Charm("EIGHT","",Resources.Template,Resources.Template),
-                new Charm("NINE","",Resources.Template,Resources.Template),
-                new Charm("TEN","",Resources.Template,Resources.Template),
-                new Charm("ELEVEN","",Resources.Template,Resources.Template),
-                new Charm("TWELVE","",Resources.Template,Resources.Template)
+                new Charm("START", "",Resources.BGStart,Resources.Start),
+                new Charm("CHROME","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",Resources.BGChrome,Resources.Chrome),
+                new Charm("STEAM","",Resources.BGSteam,Resources.Steam),
+                new Charm("EXPLORER","",Resources.BGFolder,Resources.Folder),
+                new Charm("SPOTIFY","",Resources.BGSpotify,Resources.Spotify),
+                new Charm("PAINT","",Resources.BGPaintDotNet,Resources.PaintDotNet),
+                new Charm("GITHUB","",Resources.BGGitHub,Resources.GitHub),
+                new Charm("VISUAL STUDIO","",Resources.BGVisualStudio,Resources.VisualStudio),
+                new Charm("SETTINGS","",Resources.BGSetting,Resources.Setting)
         };
         public Overlay()
         {
@@ -61,7 +57,7 @@ namespace Overlay
             {
                 this.Controls.Add(Charms[i]._title);
                 this.Controls.Add(Charms[i]._panel);
-                Charms[i].x = (float)Math.Sinh((i + scroller + 0.5) / 3.5) * 800 + this.Width / 2f - Charms[i]._panel.Width / 2;
+                Charms[i].x = (float)Math.Sinh((i + scroller + 0.5) / 4) * 950 + this.Width / 2f - Charms[i]._panel.Width / 2;
                 Charms[i].y = ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f);
             }
         }
@@ -78,20 +74,20 @@ namespace Overlay
             {
                 if (selected)
                 {
-                    Charms[i].x = (float)Math.Sinh((i + scroller + 0.5)/3.5)*800 + this.Width/2f - Charms[i]._panel.Width/2;
+                    Charms[i].x = (float)Math.Sinh((i + scroller + 0.5) / 4) * 950 + this.Width / 2f - Charms[i]._panel.Width / 2;
                     Charms[i].y = (Charms[i].y -
                         (this.Height / 2f - Charms[i]._panel.Height / 2f)
-                        ) / 1.07f +
+                        ) / 1.2f +
                         (this.Height / 2f - Charms[i]._panel.Height / 2f)
                         ;
                 }
 
                 if (!selected)
                 {
-                    Charms[i].x = (float)Math.Sinh((i + scroller + 0.5) / 3.5) * 800 + this.Width / 2f - Charms[i]._panel.Width / 2;
+                    Charms[i].x = (float)Math.Sinh((i + scroller + 0.5) / 4) * 950 + this.Width / 2f - Charms[i]._panel.Width / 2;
                     Charms[i].y = (Charms[i].y -
                         ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
-                        ) / 1.07f +
+                        ) / 1.04f +
                         ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
                         ;
                 }
