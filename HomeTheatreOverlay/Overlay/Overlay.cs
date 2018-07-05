@@ -27,7 +27,7 @@ namespace Overlay
         Charm[] Charms = new Charm[]
         {
             //  new Charm( Name , Launch File Path, Background Resource, Icon Resource )
-                new Charm("START", "", Resources.Template,Resources.Template),
+                new Charm("START", "", Resources.VisualStudio,Resources.Template),
                 new Charm("CHROME","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",Resources.Chrome,Resources.Chrome),
                 new Charm("STEAM","",Resources.Steam,Resources.Steam),
                 new Charm("EXPLORER","",Resources.Folder,Resources.Folder),

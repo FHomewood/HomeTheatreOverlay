@@ -75,9 +75,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\Backgrounds\" />
-    <Folder Include="Resources\Icons\" />
-    <Folder Include="Resources\Shortcuts\" />
+    <None Include="Resources\Paths.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Chrome.png" />
@@ -96,6 +94,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Steam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Titles.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charms\Chrome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charms\Folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charms\PaintDotNet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charms\Setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charms\Steam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charms\Template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Charms\VisualStudio.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

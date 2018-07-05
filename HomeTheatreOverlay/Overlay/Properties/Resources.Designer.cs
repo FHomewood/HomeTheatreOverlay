@@ -91,6 +91,15 @@ namespace Overlay.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Paths {
+            get {
+                return ResourceManager.GetString("Paths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Setting {
@@ -116,6 +125,25 @@ namespace Overlay.Properties {
         internal static System.Drawing.Bitmap Template {
             get {
                 object obj = ResourceManager.GetObject("Template", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Titles {
+            get {
+                return ResourceManager.GetString("Titles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VisualStudio {
+            get {
+                object obj = ResourceManager.GetObject("VisualStudio", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
