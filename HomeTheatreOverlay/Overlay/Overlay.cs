@@ -61,14 +61,14 @@ namespace Overlay
             {
                 this.Controls.Add(Charms[i]._title);
                 this.Controls.Add(Charms[i]._panel);
-                Charms[i].x = 550 * i + scrollVal;
+                Charms[i].x = (float)Math.Sinh((i + scroller + 0.5) / 3.5) * 800 + this.Width / 2f - Charms[i]._panel.Width / 2;
                 Charms[i].y = ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f);
             }
         }
 
         private void Update(object sender, EventArgs e)
         {
-            if (selected) this.Opacity += (0.8f - this.Opacity) / 10f; else this.Opacity += (0.0f - this.Opacity) / 10f;
+            if (selected) this.Opacity += (0.8f - this.Opacity) / 15f; else this.Opacity += (0.0f - this.Opacity) / 4f;
             if (this.Focused == false) selected = false;
             scroller += (scrollVal - scroller) / 4f;
 
@@ -86,7 +86,7 @@ namespace Overlay
 
                 if (!selected)
                 {
-                    Charms[i].x = (float)Math.Sinh(i + scroller + 0.5) * 300 + this.Width / 2f - 150;
+                    Charms[i].x = (float)Math.Sinh((i + scroller + 0.5) / 3.5) * 800 + this.Width / 2f - Charms[i]._panel.Width / 2;
                     Charms[i].y = (Charms[i].y -
                         ((Charms[i].x - this.Width / 2f + Charms[i]._panel.Size.Width / 2f) * 3 + this.Height / 2f - Charms[i]._panel.Height / 2f)
                         ) / 1.07f +
