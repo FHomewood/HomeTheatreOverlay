@@ -25,9 +25,9 @@ namespace Overlay
 
             this._title = new Label();
             this._title.Text = _title;
-            this._title.Size = new Size(this._panel.Size.Width-1, 50);
+            this._title.Size = new Size(this._panel.Size.Width, 50);
             this._title.TextAlign = ContentAlignment.MiddleCenter;
-            this._title.Font = new Font("Century Gothic", 15, FontStyle.Regular);
+            this._title.Font = new Font("Corbel", 15, FontStyle.Regular);
             this._title.ForeColor = Color.White;
 
             this._launch = _launch;
