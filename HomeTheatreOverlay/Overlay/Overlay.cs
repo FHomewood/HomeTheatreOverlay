@@ -41,11 +41,11 @@ namespace Overlay
             this.TopMost = true;
             this.Location = new Point(0, 0);
             this.Size = new Size(1920,1080);
-            foreach (string folder in Directory.GetDirectories(@"Charms_"))
+            foreach (string folder in Directory.GetDirectories(@"Charms"))
             {
                 Charms.Add(new Charm(
-                    folder.Substring(9).ToUpper(),
-                    folder + @"\\Shortcut.lnk",
+                    folder.Substring(8).ToUpper(),
+                    folder + @"\\Shortcut",
                     new Bitmap(folder + @"\\Background.png"),
                     new Bitmap(folder + @"\\Foreground.png")
                     ));
