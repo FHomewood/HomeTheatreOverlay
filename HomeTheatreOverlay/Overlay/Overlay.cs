@@ -39,12 +39,12 @@ namespace Overlay
             this.TransparencyKey = Color.FromArgb(255, 1, 1, 1);
 
             this.TopMost = true;
-            this.Location = new Point(0, 0);
-            this.Size = new Size(1920,1080);
+            this.Location = Screen.PrimaryScreen.Bounds.Location;
+            this.Size = Screen.PrimaryScreen.Bounds.Size;
             foreach (string folder in Directory.GetDirectories(@"Charms"))
             {
                 Charms.Add(new Charm(
-                    folder.Substring(8).ToUpper(),
+                    folder.Substring(9).ToUpper(),
                     folder + @"\\Shortcut",
                     new Bitmap(folder + @"\\Background.png"),
                     new Bitmap(folder + @"\\Foreground.png")
