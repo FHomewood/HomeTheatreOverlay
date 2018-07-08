@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
-using Overlay.Properties;
 using System.IO;
 
 namespace Overlay
@@ -23,6 +17,9 @@ namespace Overlay
         static extern int GetWindowLong(IntPtr hWnd, int nInde);
 
         bool selected = true;
+        int lastSelected = -1;
+        Point oldmousePos = MousePosition;
+        
         float scrollVal = -3;
         float scroller = -3;
         List<Charm> Charms = new List<Charm>();
@@ -63,6 +60,7 @@ namespace Overlay
 
         private void Update(object sender, EventArgs e)
         {
+            oldmousePos = MousePosition;
             if (selected) this.Opacity += (0.8f - this.Opacity) / 15f; else this.Opacity += (0.0f - this.Opacity) / 4f;
             if (this.Opacity < 0.05f) this.Close();
                 
@@ -99,12 +97,13 @@ namespace Overlay
                     (int)(Charms[i]._panel.Location.X + Charms[i]._panel.Size.Width/2 - Charms[i]._title.Size.Width / 2f),
                     (int)(Charms[i]._panel.Location.Y + Charms[i]._panel.Size.Height - Charms[i]._title.Size.Height));
 
-                if (new Rectangle(Charms[i]._panel.Location.X,
+                if (i == lastSelected || new Rectangle(Charms[i]._panel.Location.X,
                                     Charms[i]._panel.Location.Y,
                                     Charms[i]._panel.Size.Width,
                                     Charms[i]._panel.Size.Height).Contains(MousePosition))
                 {
                     //on Hover
+                    lastSelected = oldmousePos == MousePosition ? i : -1;
                     Charms[i]._panel.BackgroundImage = Charms[i]._background;
                     Charms[i]._title.BackColor = Color.FromArgb(60, 60, 60);
                     Charms[i]._panel.MouseUp += _panel_MouseUp;
@@ -136,15 +135,20 @@ namespace Overlay
                     i++;
                 }
         }
-        
+
 
         private void KeyInput(object sender, KeyEventArgs e)
         {
+            if (e.KeyData == Keys.Up   && lastSelected < Charms.Count-1) lastSelected++;
+            if (e.KeyData == Keys.Down && lastSelected > 0 ) lastSelected--;
+            if (lastSelected > -scrollVal + 2) scrollVal--;
+            if (lastSelected < -scrollVal - 3) scrollVal++;
+
         }
 
         private void Overlay_MouseWheel(object sender, MouseEventArgs e)
         {
-            scrollVal += e.Delta/120f;
+            scrollVal -= e.Delta/120f;
         }
     }
 }

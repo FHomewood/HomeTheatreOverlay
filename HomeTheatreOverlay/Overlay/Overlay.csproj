@@ -75,49 +75,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Paths.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Chrome.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Template.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Folder.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PaintDotNet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Setting.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Steam.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Titles.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Charms\Chrome.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Charms\Folder.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Charms\PaintDotNet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Charms\Setting.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Charms\Steam.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Charms\Template.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Charms\VisualStudio.png" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
