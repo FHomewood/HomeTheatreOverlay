@@ -75,7 +75,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\Menu2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Menu.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
