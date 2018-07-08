@@ -109,7 +109,7 @@ namespace Overlay
 
                 Charms[i]._panel.Location = new Point((int)Charms[i].x, (int)Charms[i].y);
                 Charms[i]._title.Location = new Point(
-                    (int)(Charms[i]._panel.Location.X + Charms[i]._panel.Size.Width/2 - Charms[i]._title.Size.Width / 2f),
+                    (int)(Charms[i]._panel.Location.X + Charms[i]._panel.Size.Width/2 - Charms[i]._title.Size.Width / 2f)+1,
                     (int)(Charms[i]._panel.Location.Y + Charms[i]._panel.Size.Height - Charms[i]._title.Size.Height));
 
                 if (i == lastSelected || new Rectangle(Charms[i]._panel.Location.X,
@@ -133,7 +133,7 @@ namespace Overlay
                     Charms[i]._panel.BackgroundImage = Charms[i]._icon;
                     Charms[i]._title.BackColor = Color.FromArgb(40, 40, 40);
                 }
-                if (oldlastSelected != lastSelected && lastSelected != -1) Playsound();
+                if (oldlastSelected != lastSelected && lastSelected != -1) player.Play();
                 oldlastSelected = lastSelected;
             }
         }
@@ -159,8 +159,8 @@ namespace Overlay
 
         private void KeyInput(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Up && lastSelected < Charms.Count - 1) { lastSelected++; Playsound(); }
-            if (e.KeyData == Keys.Down && lastSelected > 0) { lastSelected--; Playsound(); }
+            if (e.KeyData == Keys.Up && lastSelected < Charms.Count - 1) { lastSelected++; player.Play(); }
+            if (e.KeyData == Keys.Down && lastSelected > 0) { lastSelected--; player.Play(); }
             if (e.KeyData == Keys.Enter) try { Process.Start(Charms[lastSelected]._launch); } catch { }
             if (lastSelected > -scrollVal + 2) scrollVal--;
             if (lastSelected < -scrollVal - 3) scrollVal++;
@@ -170,11 +170,7 @@ namespace Overlay
         private void Overlay_MouseWheel(object sender, MouseEventArgs e)
         {
             scrollVal -= e.Delta/120f;
-            if (e.Delta != 0 && scrollVal < -3 &&scrollVal > 3-Charms.Count) Playsound();
-        }
-        private void Playsound()
-        {
-            player.Play();
+            if (e.Delta != 0 && scrollVal < -3 &&scrollVal > 3-Charms.Count) player.Play();
         }
 
     }
